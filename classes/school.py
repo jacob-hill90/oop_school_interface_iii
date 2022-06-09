@@ -1,5 +1,7 @@
 from classes.staff import Staff
 from classes.student import Student
+import os
+import csv
 
 class School:
     def __init__(self, name):
@@ -16,3 +18,24 @@ class School:
         for student in self.students:
             if student.school_id == student_id:
                 return student
+
+    def add_student(self, student_data):
+        new_student = Student(**student_data)
+        self.students.append(new_student)
+        self.save_students()
+    
+    def save_students(self):
+        my_path = os.path.abspath(os.path.dirname(__file__))
+        path = os.path.join(my_path, "../data/students.csv")
+        with open(path, mode = 'w') as csv_file:
+            fieldnames = ['name', 'age', 'role', 'school_id', 'password']
+            csv_writer = csv.writer(csv_file)
+            csv_writer.writerow(fieldnames)
+            for student in self.students:
+                csv_writer.writerow([student.name, student.age, student.role, student.school_id, student.password])
+
+    def delete_student(self, student_to_delete):
+        for student in self.students:
+            if student.name == student_to_delete:
+                self.students.remove(student)
+

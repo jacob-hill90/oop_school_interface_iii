@@ -11,5 +11,18 @@ while True:
         student_id = input('Enter student id:')
         student_string = str(school.find_student_by_id(student_id))
         print(student_string)
+    elif mode == '3':
+        student_data = {'role' : 'student'}
+        student_data['name'] = input('Enter student name: ')
+        student_data['age'] = input('Enter student age: ')
+        student_data['school_id'] = input('Enter school id: ')
+        student_data['password'] = input('Enter student password: ')
+        school.add_student(student_data)
+    elif mode == '4':
+        school.list_students()
+        student_to_delete = input('Please enter students name to delete: ')
+        school.delete_student(student_to_delete)
+
     elif mode == '5':
         break
+

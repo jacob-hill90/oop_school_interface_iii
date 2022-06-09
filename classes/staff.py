@@ -20,3 +20,5 @@ class Staff(Person):
                 staff.append(Staff(**dict(row)))
 
         return staff
+
+
