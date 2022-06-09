@@ -34,8 +34,18 @@ class School:
             for student in self.students:
                 csv_writer.writerow([student.name, student.age, student.role, student.school_id, student.password])
 
-    def delete_student(self, student_to_delete):
+    def delete_student(self, student_id):
         for student in self.students:
-            if student.name == student_to_delete:
+            if student.school_id == student_id:
                 self.students.remove(student)
-
+        
+        # Working on deleting student from CSV file
+        # my_path = os.path.abspath(os.path.dirname(__file__))
+        # path = os.path.join(my_path, "../data/students.csv")
+        # path_two = os.path.join(my_path, "../data/students_edit.csv")
+        # with open(path, mode = 'r') as inp,open(path_two, mode = 'w') as out:
+        #     csv_writer = csv.writer(out)
+        #     reader = csv.reader(inp)
+        #     for row in reader:
+        #         if row[3] == student_id:
+        #             csv_writer.writerow(row)
